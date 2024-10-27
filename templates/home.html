@@ -1,0 +1,39 @@
+<!-- templates/ home.html-->
+
+{% extends "base.html" %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<p>Welcome {{ user.username }}! </p>
+<form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit" class="profile">Log Out</button>
+</form>
+
+{% else %}
+<p>You are not logged in</p>
+{% endif %}
+<div>
+    <h3 id="purple">Weekly Hours</h3>
+    <div>
+        {% for post in post_list %}
+        <div class="post-entry">
+            <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+            <p>{{ post.day1 }}</p>
+            <p>{{ post.day2 }}</p>
+            <p>{{ post.day3 }}</p>
+            <p>{{ post.classes }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock content %}
+
+ 

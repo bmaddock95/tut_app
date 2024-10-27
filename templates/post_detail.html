@@ -1,0 +1,22 @@
+<!-- templates/post_detail.html -->
+
+{% extends "base.html" %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+{% block content %}
+<div class="post-entry">
+    <h2 class="title">{{ post.title }}</h2>
+    <p>{{ post.day1 }}</p>
+    <p>{{ post.day2 }}</p>
+    <p>{{ post.day3 }}</p>
+    <p>{{ post.classes }}</p>
+    <p>{{ post.author}}'s about me: </p>
+    <p class="about">{{ post.about }}</p>
+</div>
+<button class="profile"><a href="{% url 'post_edit' post.pk %}" class="inside"> Edit Schedule</a></button>
+<br>
+<button class="profile"><a href="{% url 'home' %}" class="inside">Home</a></button>
+{% endblock content %}
